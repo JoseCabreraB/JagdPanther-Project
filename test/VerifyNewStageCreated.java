@@ -13,7 +13,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import framework.database.DataConnection;
-import framework.database.ManageSuite;
+import framework.database.BDpreconditions;
 import framework.pages.navigation.NavigationPage;
 import framework.pages.stage.StagePage;
 import framework.utils.ReadExcel;
@@ -43,7 +43,7 @@ public class VerifyNewStageCreated {
 	
 	@BeforeTest
 	public void preconditions() throws Exception{
-		ManageSuite manage=new ManageSuite();
+		BDpreconditions manage=new BDpreconditions();
 	}
 	
 	@Test(dataProvider = "Stages")

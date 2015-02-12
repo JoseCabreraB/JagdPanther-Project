@@ -1,5 +1,9 @@
 package framework.pages.applicant;
 
+/**Created by Jose Cabrera
+ * 1/28/15
+ * 
+ */
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,79 +12,69 @@ import org.openqa.selenium.support.PageFactory;
 import framework.pages.period.PeriodDetailsPage;
 import framework.webdriver.SeleniumDriverManager;
 
-/**Created by Jose Cabrera
- * 1/28/15
- * 
- */
-
 /**
  * @title  NewApplicantPage
  * @author Jose Cabrera
  * @description Is the page that is used for add applicants to a Period
  */
 public class NewApplicantPage {
-	
+
 	//declare the instance of Selenium Webdriver
-		WebDriver driver;
-		
+	WebDriver driver;
+
 	@FindBy(id = "j_id_t:ci") 
-	WebElement textBoxCI;
-	
+	WebElement txtCI;
+
 	@FindBy(id = "j_id_t:name") 
-	WebElement textBoxName;
-	
+	WebElement txtName;
+
 	@FindBy(id = "j_id_t:lastName") 
-	WebElement textBoxLastName;
-	
+	WebElement txtLastName;
+
 	@FindBy(id = "j_id_t:email") 
-	WebElement textBoxEMail;
-	
+	WebElement txtEmail;
+
 	@FindBy(id = "j_id_t:cellphone") 
-	WebElement textBoxCellphone;
-	
+	WebElement txtCell;
+
 	@FindBy(id = "j_id_t:j_id_1d") 
-	WebElement buttonSave;
-	
+	WebElement createButton;
+
 	public NewApplicantPage(){
 		this.driver = SeleniumDriverManager.getManager().getDriver();
 		PageFactory.initElements(driver, this);
 	}
-	public NewApplicantPage setCI(String ci){
-		textBoxCI.sendKeys(ci);
-		return this;
+	public void setCI(String ci){
+		txtCI.sendKeys(ci);
 	}
-	
-	public NewApplicantPage setName(String name){
-		textBoxName.sendKeys(name);
-		return this;
+
+	public void setName(String name){
+		txtName.sendKeys(name);
 	}
-	
-	public NewApplicantPage setLastName(String lastName){
-		textBoxLastName.sendKeys(lastName);
-		return this;
+
+	public void setLastName(String lastName){
+		txtLastName.sendKeys(lastName);
 	}
-	
-	public NewApplicantPage setEMail(String eMail){
-		textBoxEMail.sendKeys(eMail);
-		return this;
+
+	public void setEMail(String eMail){
+		txtEmail.sendKeys(eMail);
 	}
-	
-	public NewApplicantPage setCellphone(String cellphone){
-		textBoxCellphone.sendKeys(cellphone);
-		return this;
+
+	public void setCell(String cellphone){
+		txtCell.sendKeys(cellphone);
 	}
-	
+
 	public PeriodDetailsPage clickSaveButton(){
-		buttonSave.click();
+		createButton.click();
 		return new PeriodDetailsPage();
 	}
-	
+
 	public PeriodDetailsPage createApplicant(String ci, String name, String lastName, String eMail, String cellphone){
 		setCI(ci);
 		setName(name);
 		setLastName(lastName);
 		setEMail(eMail);
-		setCellphone(cellphone);
+		setCell(cellphone);
 		return clickSaveButton();
 	}
 }

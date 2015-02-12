@@ -20,7 +20,7 @@ public class ApplicantPage {
 
 	//declare the instance of Selenium Webdriver
 	WebDriver driver;
-	
+
 	//The locator of button that is used for edit Applicants
 	@FindBy(id = "j_id_t:applicants:0:j_id_1g")
 	WebElement applicantsEditButton;

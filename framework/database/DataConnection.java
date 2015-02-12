@@ -123,7 +123,7 @@ public class DataConnection {
 	 * @param description: stage Description
 	 * @throws SQLException
 	 */
-	public void CreatePeriod(String id, String initDate, String name, String periodState, String programID) throws SQLException {
+	public void CreatePeriod(int id, String initDate, String name, String periodState, String programID) throws SQLException {
 		try {
 			String query = "INSERT INTO jp_period(`ID`, `INITIALDATE`, `NAME`, `PERIODSTATE`, `PROGRAM_ID`) VALUES (" + id + ", '" + initDate + "', '" + name + "', '" + periodState + "', " + programID + ");";
 			statement.execute(query);    

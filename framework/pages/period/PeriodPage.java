@@ -19,7 +19,7 @@ import framework.webdriver.SeleniumDriverManager;
 public class PeriodPage {
 	@FindBy(id = "j_id_t:programs:0:j_id_17") 
 	WebElement editButton;
-	
+
 	//declare the instance of Selenium Webdriver
 	WebDriver driver;
 
@@ -27,10 +27,10 @@ public class PeriodPage {
 		this.driver = SeleniumDriverManager.getManager().getDriver();
 		PageFactory.initElements(driver, this);
 	}
-	
+
 	public PeriodDetailsPage clickEditButton(){
 		editButton.click();
 		return new PeriodDetailsPage();
 	}
-	
+
 }

@@ -8,14 +8,12 @@ import java.sql.SQLException;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import framework.pages.navigation.NavigationPage;
 import framework.pages.program.ProgramPage;
 import framework.utils.Randoms;
 import framework.database.DataConnection;
-import framework.database.ManageSuite;
 
 /**
  * @title  SeeApplicants
@@ -29,16 +27,13 @@ public class VerifyNewProgramCreated {
 	String name = ran.generateRandomString();
 	String title = ran.generateRandomString();
 	DataConnection delete = new DataConnection();
-	@BeforeTest
-	public void preconditions() throws Exception{
-		ManageSuite manage=new ManageSuite();
-	}
+	
 	@Test
 	public void testVerifyNewProgramCreated() {
-		 navigationPage.clickProgramsLink()
-				.clickAddNewProgramButton()
-				.createProgram(name, title,"datos");
-		 ProgramPage Program = navigationPage.clickProgramsLink();
+		navigationPage.clickProgramsLink()
+		.clickAddNewProgramButton()
+		.createProgram(name, title,"datos");
+		ProgramPage Program = navigationPage.clickProgramsLink();
 		Assert.assertTrue(Program.isNameEnabled());
 	}
 	
