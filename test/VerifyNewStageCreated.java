@@ -8,15 +8,14 @@ import java.sql.SQLException;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import framework.database.DataConnection;
-import framework.database.BDpreconditions;
 import framework.pages.navigation.NavigationPage;
 import framework.pages.stage.StagePage;
 import framework.utils.ReadExcel;
+import framework.utils.ReadXMLFile;
 
 /**
  * @title  SeeApplicants
@@ -26,6 +25,7 @@ import framework.utils.ReadExcel;
  */
 public class VerifyNewStageCreated {
 	public NavigationPage navigationPage = new NavigationPage();
+	public ReadXMLFile excel=new ReadXMLFile(System.getProperty("user.dir")+"\\src\\framework\\webdriver\\config.xml");
 	DataConnection delete = new DataConnection();
 	
 	@DataProvider(name = "Stages")
@@ -35,15 +35,10 @@ public class VerifyNewStageCreated {
 	 * @throws IOException if a excel file can not read
 	 */
 	public Object[][] createStage() throws Exception {
-		ReadExcel read = new ReadExcel("C:\\Users\\Jose Cabrera\\workspace\\jagdpanther\\src\\utils",
-				"testStages.xlsx");
+		ReadExcel read = new ReadExcel(System.getProperty("user.dir")+excel.read("datasource","excelpath"),
+				excel.read("datasource","excelnamesource"));
 		Object[][] data = read.readExcelObject("Stages");
 		return data;
-	}
-	
-	@BeforeTest
-	public void preconditions() throws Exception{
-		BDpreconditions manage=new BDpreconditions();
 	}
 	
 	@Test(dataProvider = "Stages")

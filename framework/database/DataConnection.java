@@ -9,6 +9,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import framework.utils.ReadXMLFile;
+
 /**
  * @title  DataConnection
  * @author Jose Cabrera
@@ -23,11 +25,12 @@ public class DataConnection {
 	 *  @param String userDB : The user of MySql
 	 *  @param String passDB : The password of user of MySql 
 	 */
+	public static ReadXMLFile db_info = new ReadXMLFile(System.getProperty("user.dir")+"\\src\\framework\\webdriver\\config.xml");
 	private static Connection conex = null;
 	private static Statement statement;
-	private static String DIR_DB = "jdbc:mysql://localhost/jagdpanther";   
-	private static String USER_DB = "root";
-	private static String PASS_DB = "root";
+	private static String DIR_DB = db_info.read("db","dir_db");   
+	private static String USER_DB = db_info.read("db","user_db");
+	private static String PASS_DB = db_info.read("db","pass_db");
 	private String idCondition = "ID > 0";
 
 	/**
@@ -82,7 +85,8 @@ public class DataConnection {
 	 * @throws SQLException
 	 */
 	public void deleteDataInProgramTable() throws SQLException {
-		deleteData("jp_period",idCondition);
+		deleteDataInUserTable();
+		deleteDataInPeriodTable();
 		deleteData("program",idCondition);
 	}
 

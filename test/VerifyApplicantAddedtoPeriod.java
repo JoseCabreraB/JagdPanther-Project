@@ -13,8 +13,8 @@ import org.testng.annotations.Test;
 
 import framework.pages.navigation.NavigationPage;
 import framework.pages.period.PeriodDetailsPage;
-import framework.utils.Randoms;
 import framework.utils.ReadExcel;
+import framework.utils.ReadXMLFile;
 import framework.database.DataConnection;
 import framework.database.BDpreconditions;
 
@@ -26,15 +26,13 @@ import framework.database.BDpreconditions;
  */
 public class VerifyApplicantAddedtoPeriod {
 	public NavigationPage navigationPage = new NavigationPage();
-	public Randoms ran = new Randoms();
-	String name = ran.generateRandomString();
-	String title = ran.generateRandomString();
+	public ReadXMLFile excel=new ReadXMLFile(System.getProperty("user.dir")+"\\src\\framework\\webdriver\\config.xml");
 	DataConnection delete = new DataConnection();
 	
 	@BeforeTest
 	public void preconditions() throws Exception{
-		ReadExcel read = new ReadExcel("C:\\Users\\Jose Cabrera\\workspace\\jagdpanther01\\src\\framework\\utils",
-				"testStages.xlsx");
+		ReadExcel read = new ReadExcel(System.getProperty("user.dir")+excel.read("datasource","excelpath"),
+				excel.read("datasource","excelnamesource"));
 		BDpreconditions.createProgramsByBD(read.readExcelHowMap("Programs"));
 		BDpreconditions.createPeriodByBD(read.readExcelHowMap("Periods"));
 	}
@@ -47,7 +45,7 @@ public class VerifyApplicantAddedtoPeriod {
 				.clickEditButton()
 				.clickApplicantButton()
 				.clickNewApplicantButton()
-				.createApplicant("1234", "name", "lastName", "jos@jos.com", "75625632");
+				.createApplicant("78910", "namessdds", "lastName", "jos@sjos.com", "75625632");
 		Assert.assertTrue(periods.getAllAplicants().contains("name"));
 	}
 	

@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import framework.pages.navigation.NavigationPage;
+import framework.utils.ReadXMLFile;
 import framework.webdriver.SeleniumDriverManager;
 
 /**
@@ -20,7 +21,8 @@ import framework.webdriver.SeleniumDriverManager;
 public class LoginPage {
 	//declare the instance of Selenium Webdriver
 	protected WebDriver driver;
-
+	//declare the instance of ReadXML
+	public ReadXMLFile log=new ReadXMLFile(System.getProperty("user.dir")+"\\src\\framework\\webdriver\\config.xml");
 	//The locator used for find an inputUserName TextBox
 	@FindBy(id = "j_id_i:userName")
 	WebElement txtUser;
@@ -38,9 +40,10 @@ public class LoginPage {
 	WebElement closeSessionLink;
 
 	public LoginPage() {
+		
 		driver = SeleniumDriverManager.getManager().getDriver();
 		PageFactory.initElements(driver, this);
-		driver.get("http://localhost:8080/");
+		driver.get(log.read("login", "url"));
 	}
 
 	public NavigationPage clickLogin() {
