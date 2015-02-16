@@ -87,6 +87,7 @@ public class DataConnection {
 	public void deleteDataInProgramTable() throws SQLException {
 		deleteDataInUserTable();
 		deleteDataInPeriodTable();
+		deleteData("jp_group","GROUP_"+idCondition);
 		deleteData("program",idCondition);
 	}
 
@@ -95,6 +96,7 @@ public class DataConnection {
 	 * @throws SQLException
 	 */
 	public void deleteDataInStageTable() throws SQLException {
+		deleteData("stage_value",idCondition);
 		deleteData("stage",idCondition);
 	}
 

@@ -36,7 +36,7 @@ public class VerifyNewStageCreated {
 	 */
 	public Object[][] createStage() throws Exception {
 		ReadExcel read = new ReadExcel(System.getProperty("user.dir")+excel.read("datasource","excelpath"),
-				excel.read("datasource","excelnamesource"));
+				excel.read("datasource","datadrivensource"));
 		Object[][] data = read.readExcelObject("Stages");
 		return data;
 	}

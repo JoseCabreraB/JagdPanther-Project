@@ -3,6 +3,7 @@
 		<classes>
 			<class name="test.JagdPantherSuite" />
 			<class name="test.VerifyApplicantAddedtoPeriod" />
+			<class name="test.VerifyNewStageCreated" />
 		</classes>
   </test>
 </suite>

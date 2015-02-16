@@ -4,10 +4,6 @@ import java.util.*;
 
 
 public class BDpreconditions {
-	protected static List<Map<String,String>> programxls;
-	protected static List<Map<String,String>> stagesxls;
-	protected static List<Map<String,String>> usersxls;
-	protected static List<Map<String,String>> periodxls;
 	public static DataConnection preconditions = new DataConnection();
 
 	public BDpreconditions() throws Exception 

@@ -4,7 +4,10 @@ package test;
  * 1/27/15
  * 
  */
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -26,27 +29,34 @@ import framework.database.BDpreconditions;
  */
 public class VerifyApplicantAddedtoPeriod {
 	public NavigationPage navigationPage = new NavigationPage();
-	public ReadXMLFile excel=new ReadXMLFile(System.getProperty("user.dir")+"\\src\\framework\\webdriver\\config.xml");
+	private ReadXMLFile excelFile = new ReadXMLFile(System.getProperty("user.dir")+"\\src\\framework\\webdriver\\config.xml");
+	private String excelFilePath = System.getProperty("user.dir")+excelFile.read("datasource","excelpath");
+	private String excelName = excelFile.read("datasource","workflowsource");
+	private List<Map<String,String>> Applicant;
 	DataConnection delete = new DataConnection();
-	
+	private ReadExcel read;
 	@BeforeTest
 	public void preconditions() throws Exception{
-		ReadExcel read = new ReadExcel(System.getProperty("user.dir")+excel.read("datasource","excelpath"),
-				excel.read("datasource","excelnamesource"));
+		read = new ReadExcel(excelFilePath,excelName);
 		BDpreconditions.createProgramsByBD(read.readExcelHowMap("Programs"));
 		BDpreconditions.createPeriodByBD(read.readExcelHowMap("Periods"));
 	}
 	
 	@Test
-	public void testVerifyNewApplicantCreated() {
-		 
+	public void testVerifyNewApplicantCreated() throws IOException {
+		Applicant=read.readExcelHowMap("Applicants");
+		String ci = Applicant.get(0).get("ci");
+		String name = Applicant.get(0).get("name");
+		String lastName = Applicant.get(0).get("lastname");
+		String email = Applicant.get(0).get("email");
+		String cell = Applicant.get(0).get("cell");
 		PeriodDetailsPage periods=navigationPage
 				.clickPeriodsLink()
 				.clickEditButton()
 				.clickApplicantButton()
 				.clickNewApplicantButton()
-				.createApplicant("78910", "namessdds", "lastName", "jos@sjos.com", "75625632");
-		Assert.assertTrue(periods.getAllAplicants().contains("name"));
+				.createApplicant(ci, name, lastName, email, cell);
+		Assert.assertTrue(periods.getAllAplicants().contains(name));
 	}
 	
 	@AfterTest

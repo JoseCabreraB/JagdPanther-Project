@@ -58,7 +58,7 @@ public class ReadExcel {
 		int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
 		List<Map<String,String>> data = new LinkedList<>();
 		//Create a loop over all the rows of excel file to read it
-		for (int i = 0; i < rowCount + 1; i++) {
+		for (int i = 1; i < rowCount + 1; i++) {
 			Row row = sheet.getRow(i);
 			Map<String, String> currentRow = new HashMap<String,String>();
 			//Create a loop to print cell values in a row
