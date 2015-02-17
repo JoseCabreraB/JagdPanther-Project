@@ -1,4 +1,8 @@
 <suite name="JagdPantherSuit">
+	<listeners>
+      	<listener class-name="org.uncommons.reportng.HTMLReporter"/>
+      	<listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+  	</listeners>
 	<test name="Acceptance">
 		<classes>
 			<class name="test.JagdPantherSuite" />

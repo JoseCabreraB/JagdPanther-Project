@@ -29,7 +29,9 @@ public class ApplicantPage {
 		this.driver = SeleniumDriverManager.getManager().getDriver();
 		PageFactory.initElements(driver, this);
 	}
-
+	public void applicantEditButton(String name){
+		
+	}
 	public Boolean isEditEnabled() {
 		return applicantsEditButton.isDisplayed();
 	}
