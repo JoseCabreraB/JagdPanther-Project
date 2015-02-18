@@ -27,6 +27,7 @@ public abstract class AbstractNewFormStageOrProgram {
 	protected WebElement txtDescription;
 
 	public void setName(String names) {
+		txtName.clear();
 		txtName.sendKeys(names);
 	}
 
@@ -35,6 +36,7 @@ public abstract class AbstractNewFormStageOrProgram {
 	}
 
 	public void setDescription(String description) {
+		txtDescription.clear();
 		txtDescription.sendKeys(description);
 	}
 }

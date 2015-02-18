@@ -1,5 +1,9 @@
 package framework.utils;
 
+/**Created by Jose Cabrera
+ * 1/28/15
+ * 
+ */
 import java.util.*;
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,6 +15,11 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+/**
+ * @title  ReadExcel
+ * @author Jose Cabrera
+ * @description Is the page that is used for read data of excelfile
+ */
 public class ReadExcel {
 	private Workbook workbook = null;
 	public ReadExcel(String filePath,String fileName) throws Exception{

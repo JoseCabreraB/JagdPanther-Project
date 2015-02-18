@@ -1,5 +1,9 @@
 package framework.utils;
 
+/**Created by Jose Cabrera
+ * 1/28/15
+ * 
+ */
 import java.io.File;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -10,6 +14,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+/**
+ * @title  ReadXMLFile
+ * @author Jose Cabrera
+ * @description Is the page that is used for read data of XML file
+ */
 public class ReadXMLFile {
 	public static Document doc;
 	public ReadXMLFile(String path){

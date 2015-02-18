@@ -11,6 +11,8 @@
 	</db>
 	<driverconfig>
 		<drivername>firefox</drivername>
+		<implicit>'30'</implicit>
+		<explicit>'30'</explicit>
 	</driverconfig>
 	<datasource>
 		<excelpath>\\src\\framework\\datasource</excelpath>

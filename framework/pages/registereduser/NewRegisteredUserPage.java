@@ -54,18 +54,22 @@ public class NewRegisteredUserPage  {
 	}
 
 	public void setCI(String ci) {
+		txtCI.clear();
 		txtCI.sendKeys(ci);
 	}
 
 	public void setName(String name){
+		txtName.clear();
 		txtName.sendKeys(name);
 	}
 
 	public void setLastName(String lastName) {
+		txtLastName.clear();
 		txtLastName.sendKeys(lastName);
 	}
 
 	public void setEmail(String emails) {
+		txtEmail.clear();
 		txtEmail.sendKeys(emails);
 	}
 	

@@ -2,11 +2,12 @@ package framework.utils;
 
 import org.testng.annotations.DataProvider;
 
+import framework.common.ConstantsConf;
+
 
 public class DataProviders {
-	private static ReadXMLFile excel=new ReadXMLFile(System.getProperty("user.dir")+"\\src\\config.xml");
-	private static String filePath = System.getProperty("user.dir")+excel.read("datasource","excelpath");
-	private static String fileName = excel.read("datasource","datadrivensource");
+	private static String filePath = ConstantsConf.FILEPATH;
+	private static String fileName = ConstantsConf.FILENAME;
 	private static ReadExcel excelFile;
 	
 	/**
@@ -31,19 +32,7 @@ public class DataProviders {
 		return excelFile.readExcelObject("Periods");
 	}
 	
-	/**
-	 * This method return an Object with data to create Applicants
-	 * @return
-	 */
-	@DataProvider(name = "ApplicantData")
-	public static Object[][] applicantData(){
-		return new Object[][]{
-				{"10001","NameApplicant","LastNameApplicant","Name1@LastName.com","777777771"},
-				{"10002","NameApplicante","LastNameApplicant","Name1@LastName2.com","777777772"}
-		};
-	}
-	
-	/**
+		/**
 	 * This method return data from the XLSX files to Create Stages
 	 * @return
 	 * @throws Exception 
@@ -60,9 +49,9 @@ public class DataProviders {
 	 */
 	@DataProvider(name = "UsersData")
 	public static Object[][] userData(){
-		return new Object[][] {
-				{"1234","userName1","userLastName1","user@lastName1.com"},
-				{"1235","userName2","userLastName2","user@lastName2.com"}
-		};
+		return new Object[][] {{"006","23","21","user1@user.com"},
+				{"004","24","21","user2@user.com"},
+				{"009","25","21","user3@user.com"}};
+		
 	}
 } 

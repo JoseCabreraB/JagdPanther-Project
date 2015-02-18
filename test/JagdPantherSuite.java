@@ -9,8 +9,8 @@ import java.sql.SQLException;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
+import framework.common.ConstantsConf;
 import framework.pages.LoginPage;
-import framework.utils.ReadXMLFile;
 
 /**
  * @title  JagdPantherSuite
@@ -22,9 +22,7 @@ public class JagdPantherSuite {
 	
 	@BeforeSuite
 	public void init() {
-		ReadXMLFile read = new ReadXMLFile(System.getProperty("user.dir")+"\\src\\config.xml");
-		loginPage.login(read.read("login", "user"),
-				read.read("login", "password"));
+		loginPage.login(ConstantsConf.USER,ConstantsConf.PASSWORD);
 	}
 
 	@AfterSuite

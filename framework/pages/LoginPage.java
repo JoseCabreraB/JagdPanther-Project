@@ -9,8 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import framework.common.ConstantsConf;
 import framework.pages.navigation.NavigationPage;
-import framework.utils.ReadXMLFile;
 import framework.webdriver.SeleniumDriverManager;
 
 /**
@@ -21,8 +21,6 @@ import framework.webdriver.SeleniumDriverManager;
 public class LoginPage {
 	//declare the instance of Selenium Webdriver
 	protected WebDriver driver;
-	//declare the instance of ReadXML
-	public ReadXMLFile log=new ReadXMLFile(System.getProperty("user.dir")+"\\src\\framework\\webdriver\\config.xml");
 	//The locator used for find an inputUserName TextBox
 	@FindBy(id = "j_id_i:userName")
 	WebElement txtUser;
@@ -43,7 +41,7 @@ public class LoginPage {
 		
 		driver = SeleniumDriverManager.getManager().getDriver();
 		PageFactory.initElements(driver, this);
-		driver.get(log.read("login", "url"));
+		driver.get(ConstantsConf.URL);
 	}
 
 	public NavigationPage clickLogin() {
@@ -52,10 +50,12 @@ public class LoginPage {
 	}
 
 	public void setUser(String user){
+		txtUser.clear();
 		txtUser.sendKeys(user);
 	}
 
 	public void setPass(String pass){
+		txtPass.clear();
 		txtPass.sendKeys(pass);
 	}
 

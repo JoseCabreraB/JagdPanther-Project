@@ -9,7 +9,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.log4testng.Logger;
 import org.openqa.selenium.TakesScreenshot;
 
-import framework.utils.ReadXMLFile;
+import framework.common.ConstantsConf;
 
 import java.util.concurrent.TimeUnit;
 import java.io.File;
@@ -19,10 +19,9 @@ import java.io.File;
  */
 public class SeleniumDriverManager
 {
-	private ReadXMLFile driverconf = new ReadXMLFile(System.getProperty("user.dir")+"\\src\\config.xml");
 	private static SeleniumDriverManager manager = null;
 	private String driverPath=System.getProperty("user.dir");
-	private String driverName = driverconf.read("driverconfig", "drivername");
+	private String driverName = ConstantsConf.DRIVERNAME;
 	private WebDriver driver;
 	private WebDriverWait wait;
 
@@ -43,9 +42,9 @@ public class SeleniumDriverManager
 			driver = new InternetExplorerDriver();break;
 		}
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-		wait = new WebDriverWait(driver, 30, 100);
+		driver.manage().timeouts().implicitlyWait(ConstantsConf.IMPLICIT, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(ConstantsConf.EXPLICIT, TimeUnit.SECONDS);
+		wait = new WebDriverWait(driver, ConstantsConf.EXPLICIT, 100);
 	}
 
 	public static SeleniumDriverManager getManager() {

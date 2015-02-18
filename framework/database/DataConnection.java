@@ -6,9 +6,11 @@ package framework.database;
  */
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import framework.common.ConstantsConf;
 import framework.utils.ReadXMLFile;
 
 /**
@@ -25,12 +27,12 @@ public class DataConnection {
 	 *  @param String userDB : The user of MySql
 	 *  @param String passDB : The password of user of MySql 
 	 */
-	public static ReadXMLFile db_info = new ReadXMLFile(System.getProperty("user.dir")+"\\src\\framework\\webdriver\\config.xml");
+	public static ReadXMLFile db_info = new ReadXMLFile(System.getProperty("user.dir")+"\\src\\config.xml");
 	private static Connection conex = null;
 	private static Statement statement;
-	private static String DIR_DB = db_info.read("db","dir_db");   
-	private static String USER_DB = db_info.read("db","user_db");
-	private static String PASS_DB = db_info.read("db","pass_db");
+	private static String DIR_DB = ConstantsConf.DIR_DB;  
+	private static String USER_DB = ConstantsConf.USER_DB;
+	private static String PASS_DB = ConstantsConf.PASS_DB;
 	private String idCondition = "ID > 0";
 
 	/**
@@ -87,7 +89,8 @@ public class DataConnection {
 	public void deleteDataInProgramTable() throws SQLException {
 		deleteDataInUserTable();
 		deleteDataInPeriodTable();
-		deleteData("jp_group","GROUP_"+idCondition);
+		deleteData("group_stage","STAGE_"+idCondition);
+		deleteData("jp_group",idCondition);
 		deleteData("program",idCondition);
 	}
 
@@ -164,6 +167,23 @@ public class DataConnection {
 				conex.close();
 			}
 		}
+	}
+	public String getName(String tableName,String condition) throws Exception {
+		String query = null;
+		try {
+			query = "SELECT NAME FROM "+tableName +" WHERE NAME = '"+condition+"'";
+			ResultSet result= statement.executeQuery(query);  
+			while(result.next()){
+				query=result.getString(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (conex != null) {
+				conex.close();
+			}
+		}
+		return query;
 	}
 	
 }

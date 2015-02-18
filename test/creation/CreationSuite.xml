@@ -1,0 +1,15 @@
+<suite name="JagdPantherSuit">
+	<listeners>
+      	<listener class-name="org.uncommons.reportng.HTMLReporter"/>
+      	<listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+  	</listeners>
+	<test name="Acceptance">
+		<classes>
+			<class name="test.JagdPantherSuite" />
+			<class name="test.creation.VerifyNewPeriodCreated" />
+			<class name="test.creation.VerifyNewProgramCreated" />
+			<class name="test.creation.VerifyNewStageCreated" />
+			<class name="test.creation.VerifyNewRegisteredUserCreated" />
+		</classes>
+  	</test>
+</suite>

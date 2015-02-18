@@ -23,7 +23,7 @@ public class PeriodDetailsPage {
 	WebElement labelName;
 
 	@FindBy(id = "j_id_t:j_id_17") 
-	WebElement textBoxName;
+	WebElement txtName;
 
 	@FindBy(xpath = "//button[@type='button']") 
 	WebElement buttonSaveName;
@@ -35,7 +35,7 @@ public class PeriodDetailsPage {
 	WebElement labelDate;
 
 	@FindBy(id = "j_id_t:j_id_1b_input") 
-	WebElement textBoxDate;
+	WebElement txtDate;
 
 	@FindBy(xpath = "//a[contains(text(),'Postulantes')]") 
 	WebElement applicantButton;
@@ -52,14 +52,14 @@ public class PeriodDetailsPage {
 	}
 	public PeriodDetailsPage setPeriodName(String name){
 		labelName.click();
-		textBoxName.sendKeys(name);
+		txtName.sendKeys(name);
 		buttonSaveName.click();
 		return this;
 	}
 
 	public PeriodDetailsPage setStartPeriodDate(String date){
 		labelDate.click();
-		textBoxDate.sendKeys(date);
+		txtDate.sendKeys(date);
 		buttonSaveDate.click();
 		return this;
 	}
@@ -81,5 +81,4 @@ public class PeriodDetailsPage {
 	public String getAllAplicants(){
 		return applicantTable.getText();
 	}
-
 }

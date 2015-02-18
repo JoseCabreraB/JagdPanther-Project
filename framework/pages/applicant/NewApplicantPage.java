@@ -49,18 +49,22 @@ public class NewApplicantPage {
 	}
 
 	public void setName(String name){
+		txtName.clear();
 		txtName.sendKeys(name);
 	}
 
 	public void setLastName(String lastName){
+		txtLastName.clear();
 		txtLastName.sendKeys(lastName);
 	}
 
 	public void setEMail(String eMail){
+		txtEmail.clear();
 		txtEmail.sendKeys(eMail);
 	}
 
 	public void setCell(String cellphone){
+		txtCell.clear();
 		txtCell.sendKeys(cellphone);
 	}
 
