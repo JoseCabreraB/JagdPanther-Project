@@ -22,7 +22,7 @@ public class JagdPantherSuite {
 	
 	@BeforeSuite
 	public void init() {
-		ReadXMLFile read = new ReadXMLFile(System.getProperty("user.dir")+"\\src\\framework\\webdriver\\config.xml");
+		ReadXMLFile read = new ReadXMLFile(System.getProperty("user.dir")+"\\src\\config.xml");
 		loginPage.login(read.read("login", "user"),
 				read.read("login", "password"));
 	}

@@ -4,7 +4,6 @@ package test;
  * 1/27/15
  * 
  */
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -15,19 +14,19 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import framework.pages.navigation.NavigationPage;
-import framework.pages.period.PeriodDetailsPage;
 import framework.utils.ReadExcel;
 import framework.utils.ReadXMLFile;
-import framework.database.DataConnection;
 import framework.database.BDpreconditions;
+import framework.database.DataConnection;
 
 /**
- * @title  VerifyApplicantAddedtoPeriod
+ * @title  Verify if a new program is created correctly
  * @author Jose Cabrera
  * @description Is the page that contains information about 
- * Test that verify if an applicant is created correctly
+ * Test that verify if a Program is created correctly
  */
-public class VerifyApplicantAddedtoPeriod {
+
+public class VerifyApplicantIsModified {
 	public NavigationPage navigationPage = new NavigationPage();
 	private ReadXMLFile excelFile = new ReadXMLFile(System.getProperty("user.dir")+"\\src\\config.xml");
 	private String excelFilePath = System.getProperty("user.dir")+excelFile.read("datasource","excelpath");
@@ -40,27 +39,6 @@ public class VerifyApplicantAddedtoPeriod {
 		read = new ReadExcel(excelFilePath,excelName);
 		BDpreconditions.createProgramsByBD(read.readExcelHowMap("Programs"));
 		BDpreconditions.createPeriodByBD(read.readExcelHowMap("Periods"));
-	}
-	
-	@Test
-	public void testVerifyNewApplicantCreated() throws IOException {
-		Applicant=read.readExcelHowMap("Applicants");
-		String ci = Applicant.get(0).get("ci");
-		String name = Applicant.get(0).get("name");
-		String lastName = Applicant.get(0).get("lastname");
-		String email = Applicant.get(0).get("email");
-		String cell = Applicant.get(0).get("cell");
-		PeriodDetailsPage periods=navigationPage
-				.clickPeriodsLink()
-				.clickEditButton()
-				.clickApplicantButton()
-				.clickNewApplicantButton()
-				.createApplicant(ci, name, lastName, email, cell);
-		Assert.assertTrue(periods.getAllAplicants().contains(name));
-	}
-	
-	@AfterTest
-	public void cleanEnvironment() throws SQLException {
-		delete.deleteDataInProgramTable();
+
 	}
 }

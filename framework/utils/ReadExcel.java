@@ -37,15 +37,15 @@ public class ReadExcel {
 
 		//Find number of rows in excel file
 		int rowCount = Sheet.getLastRowNum() - Sheet.getFirstRowNum();
-		Object[][] data = new Object[rowCount + 1][Sheet.getRow(0).getLastCellNum()];
+		Object[][] data = new Object[rowCount][Sheet.getRow(0).getLastCellNum()];
 
 		//Create a loop over all the rows of excel file to read it
-		for (int i = 0; i < rowCount + 1; i++) {
+		for (int i = 1; i < rowCount + 1; i++) {
 			Row row = Sheet.getRow(i);
 
 			//Create a loop to print cell values in a row
 			for (int j = 0; j < row.getLastCellNum(); j++) {
-				data[i][j] = (row.getCell(j).getStringCellValue());
+				data[i-1][j] = (row.getCell(j).getStringCellValue());
 			}
 		}
 		return data;

@@ -8,14 +8,12 @@ import java.sql.SQLException;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import framework.database.DataConnection;
 import framework.pages.navigation.NavigationPage;
 import framework.pages.stage.StagePage;
-import framework.utils.ReadExcel;
-import framework.utils.ReadXMLFile;
+import framework.utils.DataProviders;
 
 /**
  * @title  SeeApplicants
@@ -25,23 +23,9 @@ import framework.utils.ReadXMLFile;
  */
 public class VerifyNewStageCreated {
 	public NavigationPage navigationPage = new NavigationPage();
-	public ReadXMLFile excel=new ReadXMLFile(System.getProperty("user.dir")+"\\src\\framework\\webdriver\\config.xml");
 	DataConnection delete = new DataConnection();
 	
-	@DataProvider(name = "Stages")
-	/***
-	 * 
-	 * @return Object[][] that contain information of stages
-	 * @throws IOException if a excel file can not read
-	 */
-	public Object[][] createStage() throws Exception {
-		ReadExcel read = new ReadExcel(System.getProperty("user.dir")+excel.read("datasource","excelpath"),
-				excel.read("datasource","datadrivensource"));
-		Object[][] data = read.readExcelObject("Stages");
-		return data;
-	}
-	
-	@Test(dataProvider = "Stages")
+	@Test(dataProvider = "StagesData", dataProviderClass = DataProviders.class)
 	public void testVerifyNewStageCreated(String name, String Tittle, String Description) {
 		StagePage stage = navigationPage.clickStagesLink()
 				.clickAddNewStageButton().create(name, Tittle, Description);

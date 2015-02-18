@@ -16,7 +16,7 @@ import framework.utils.Randoms;
 import framework.database.DataConnection;
 
 /**
- * @title  SeeApplicants
+ * @title  Verify if a new program is created correctly
  * @author Jose Cabrera
  * @description Is the page that contains information about 
  * Test that verify if a Program is created correctly
@@ -34,7 +34,7 @@ public class VerifyNewProgramCreated {
 		.clickAddNewProgramButton()
 		.createProgram(name, title,"datos");
 		ProgramPage Program = navigationPage.clickProgramsLink();
-		Assert.assertTrue(Program.isNameEnabled());
+		Assert.assertTrue(Program.isNameEnabled(name));
 	}
 	
 	@AfterTest

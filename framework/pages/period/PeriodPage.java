@@ -19,6 +19,10 @@ import framework.webdriver.SeleniumDriverManager;
 public class PeriodPage {
 	@FindBy(id = "j_id_t:programs:0:j_id_17") 
 	WebElement editButton;
+	
+	//The locator of PeriodsTable
+		@FindBy(id = "j_id_t:programs_data")
+		WebElement namesPeriods;
 
 	//declare the instance of Selenium Webdriver
 	WebDriver driver;
@@ -31,6 +35,9 @@ public class PeriodPage {
 	public PeriodDetailsPage clickEditButton(){
 		editButton.click();
 		return new PeriodDetailsPage();
+	}
+	public Boolean isNameEnabled(String name) {
+		return namesPeriods.getText().contains(name);
 	}
 
 }

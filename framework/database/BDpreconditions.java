@@ -1,8 +1,16 @@
 package framework.database;
 
+/**Created by Jose Cabrera
+ * 2/9/15
+ * 
+ */
 import java.util.*;
 
-
+/**
+ * @title  BDpreconditions
+ * @author Jose Cabrera
+ * @description Is the page that contains preconditions that can executed for database 
+ * */
 public class BDpreconditions {
 	public static DataConnection preconditions = new DataConnection();
 

@@ -8,6 +8,8 @@
 			<class name="test.JagdPantherSuite" />
 			<class name="test.VerifyApplicantAddedtoPeriod" />
 			<class name="test.VerifyNewStageCreated" />
+			<class name="test.VerifyNewPeriodWasCreated" />
+			<class name="test.VerifyNewProgramCreated" />
 		</classes>
   </test>
 </suite>
